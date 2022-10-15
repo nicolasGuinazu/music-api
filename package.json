@@ -1,6 +1,9 @@
 {
   "name": "nest-crud",
   "version": "0.0.1",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "description": "",
   "author": "",
   "private": true,
@@ -24,6 +27,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^4.4.0",
     "pg": "^8.8.0",
