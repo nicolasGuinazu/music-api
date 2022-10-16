@@ -23,8 +23,12 @@ export class BandsService {
     return `This action updates a #${id} band`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} band`;
+  async remove(id: number) {
+    return await this.dbService.band.delete({
+      where:{
+        id:id
+      }
+  })
   }
 }
 
