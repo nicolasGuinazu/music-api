@@ -12,7 +12,15 @@ export class BandsService {
   }
 
   async findAll() {
-    return await this.dbService.band.findMany()
+    return await this.dbService.band.findMany({
+      include:{
+        albums:{
+          include : {
+            genre:true
+          }
+        }
+      }
+    })
   }
 
   findOne(id: number) {
