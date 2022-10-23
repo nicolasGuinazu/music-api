@@ -23,8 +23,12 @@ export class BandsService {
     })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} band`;
+  async findOne(id: number) {
+    return await this.dbService.band.findUnique({
+      where:{
+        id:id
+      }
+    });
   }
 
   update(id: number, updateBandDto: UpdateBandDto) {
