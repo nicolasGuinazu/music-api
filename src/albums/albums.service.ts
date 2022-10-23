@@ -5,22 +5,26 @@ import { UpdateAlbumDto } from './dto/update-album.dto';
 
 @Injectable()
 export class AlbumsService {
-  constructor(private dbService:PrismaService){}
+  constructor(private dbService: PrismaService) {}
 
   create(createAlbumDto: CreateAlbumDto) {
-    return 'This action adds a new album';
+    return this.dbService.album.create({ data: createAlbumDto });
   }
 
   findAll() {
     return this.dbService.album.findMany({
-      include:{
-        genre:true
-      }
+      include: {
+        genre: true,
+      },
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} album`;
+  async findOne(id: number) {
+    return this.dbService.album.findUnique({
+      where:{
+        id:id
+      }
+    })
   }
 
   update(id: number, updateAlbumDto: UpdateAlbumDto) {
