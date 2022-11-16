@@ -21,17 +21,26 @@ export class AlbumsService {
 
   async findOne(id: number) {
     return this.dbService.album.findUnique({
-      where:{
-        id:id
-      }
-    })
+      where: {
+        id: id,
+      },
+    });
   }
 
   update(id: number, updateAlbumDto: UpdateAlbumDto) {
-    return `This action updates a #${id} album`;
+    return this.dbService.album.update({
+      where: {
+        id: id,
+      },
+      data: updateAlbumDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} album`;
+  async remove(id: number) {
+    return await this.dbService.album.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 }

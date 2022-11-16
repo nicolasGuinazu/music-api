@@ -5,27 +5,40 @@ import { UpdateGenreDto } from './dto/update-genre.dto';
 
 @Injectable()
 export class GenresService {
-  constructor(private dbService: PrismaService) { }
+  constructor(private dbService: PrismaService) {}
 
   async create(createGenreDto: CreateGenreDto) {
     return this.dbService.genre.create({
-      data: createGenreDto
+      data: createGenreDto,
     });
   }
 
   async findAll() {
-    return this.dbService.genre.findMany()
+    return this.dbService.genre.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} genre`;
+  async findOne(id: number) {
+    return await this.dbService.band.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 
   update(id: number, updateGenreDto: UpdateGenreDto) {
-    return `This action updates a #${id} genre`;
+    return this.dbService.genre.update({
+      where: {
+        id: id,
+      },
+      data: updateGenreDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} genre`;
+  async remove(id: number) {
+    return await this.dbService.band.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 }
